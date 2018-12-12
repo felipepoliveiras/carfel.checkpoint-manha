@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous"
+  />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/usuario.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <form class="form-signin" action="/Usuario/Cadastrar" method="POST">
+      <a href="/Pages/index.html">
+        <h4>CARFEL</h4>  
+      </a>
+      <h1 class="h3 mb-3 font-weight-normal">Crie sua conta</h1>
+      <label for="inputPassword" class="sr-only">Nome</label>
+      <input type="text" id="inputNome" name="nome" class="form-control" placeholder="Informe seu nome" required>
+      <label for="inputEmail" class="sr-only">Email </label>
+      <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Informe seu e-mail" required autofocus>
+      <label for="inputSenha" class="sr-only">Senha</label>
+      <input type="password" id="inputSenha" name="senha" class="form-control" placeholder="Informe sua senha" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+      <br>
+      <p>Caso possua uma conta <a href="/Usuario/Login">clique aqui</a></p>
+      <p class="mt-5 mb-3 text-muted">&copy; Desenvovido por ...</p>
+    </form>
+  </body>
+</html>
