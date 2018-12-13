@@ -1,8 +1,11 @@
+using System;
+
 namespace Senai.Carfel.Checkpoint.Models
 {
     /// <summary>
     /// Modelo de Classe responsável pelos depoimento
     /// </summary>
+    [Serializable]
     public class DepoimentoModel : BaseModel
     {
         /// <summary>
@@ -19,5 +22,10 @@ namespace Senai.Carfel.Checkpoint.Models
         /// Armazena o usuário que cadastrou o depoimento
         /// </summary>
         public UsuarioModel Usuario { get; set; }
+    
+        public DepoimentoModel()
+        {
+            Usuario = new UsuarioModel();
+        }
     }
 }

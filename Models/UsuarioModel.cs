@@ -26,6 +26,10 @@ namespace Senai.Carfel.Checkpoint.Models
         /// </summary>
         public bool Administrador {get; set;}
 
+        public UsuarioModel(){
+
+        }
+        
         public UsuarioModel(string nome, string email, string senha)
         {
             Nome = nome;

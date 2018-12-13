@@ -18,10 +18,13 @@
     <link rel="stylesheet" href="/css/depoimentos.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    
+    @RenderSection("styles", required: false)
+  
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <h4><a href="/Pages/Index.html">Carfel</a></h4>
+      <h4><a href="/">Carfel</a></h4>
       <button
         class="navbar-toggler"
         type="button"
@@ -36,19 +39,19 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/Pages/Index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Pages/Sobre.html">Sobre</a>
+            <a class="nav-link" href="/Pages/Sobre">Sobre</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Pages/Contato.html">Contato</a>
+            <a class="nav-link" href="/Pages/Contato">Contato</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Pages/Depoimentos.html">Depoimentos</a>
+            <a class="nav-link" href="/Depoimento">Depoimentos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Pages/Faq.html">Faq</a>
+            <a class="nav-link" href="/Pages/Faq">Faq</a>
           </li>
         </ul>
         <span class="navbar-text">
@@ -112,11 +115,11 @@
             <div class="col-md-4 col-xl-3">
               <h5>Links</h5>
               <ul class="nav-list">
-                <li><a href="/Pages/Index.html">Home</a></li>
-                <li><a href="/Pages/Sobre.html">Sobre</a></li>
-                <li><a href="/Pages/Contato.html">Contato</a></li>
-                <li><a href="/Usuario/Login.html">Login</a></li>
-                <li><a href="/Usuario/Cadastrar.html">Cadastrar</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/Pages/Sobre">Sobre</a></li>
+                <li><a href="/Pages/Contato">Contato</a></li>
+                <li><a href="/Usuario/Login">Login</a></li>
+                <li><a href="/Usuario/Cadastrar">Cadastrar</a></li>
               </ul>
             </div>
           </div>
@@ -154,5 +157,7 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+
+    @RenderSection("scripts", required: false)
   </body>
 </html>

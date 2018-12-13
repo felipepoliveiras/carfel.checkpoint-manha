@@ -60,7 +60,7 @@ namespace Senai.Carfel.Checkpoint
             app.UseMvc(
                 rota => rota.MapRoute(
                     name: "defaults",
-                    template: "{controller=Usuario}/{action=Login}"
+                    template: "{controller=Pages}/{action=Index}"
                 )
             ); // <- Habilita o uso de MVC no app
 

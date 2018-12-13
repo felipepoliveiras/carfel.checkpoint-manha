@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Http;
+@using Senai.Carfel.Checkpoint.Models;
+
 @{
     Layout = "MasterPagePadrao";
     ViewBag.Title = "Depoimentos";
@@ -5,74 +8,69 @@
 
 <div class="container" style="padding-top:30px">
     <h1 class="text-center">O que falam sobre nós</h1>
+
+    @if(@TempData["Mensagem"] != null){
+        <div class="alert alert-success" role="alert">
+          @TempData["Mensagem"]
+        </div>
+    }
+
+    @if(Context.Session.GetString("idUsuario") != null){
+        <form action="/Depoimento/Cadastrar" method="POST">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="name"> Deixe o seu depoimento</label>
+                <textarea
+                  name="depoimento"
+                  id="mensagem"
+                  class="form-control"
+                  rows="9"
+                  cols="25"
+                  required="required"
+                ></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <button
+                type="submit"
+                class="btn btn-primary pull-right"
+                id="btnContato"
+              >
+                Enviar Mensagem
+              </button>
+            </div>
+          </div>
+        </form>
+
+    }
             <br>
             <div class="row">
-                <div class="col-sm-6">
-                    <div id="tb-testimonial" class="testimonial testimonial-default">
-                        <div class="testimonial-section">
-                            Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                        </div>
-                        <div class="testimonial-desc">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                        </div>
-                    </div>   
-                </div>
-                
-                <div class="col-sm-6">
-                    <div id="tb-testimonial" class="testimonial testimonial-default">
-                        <div class="testimonial-section">
-                            Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                        </div>
-                        <div class="testimonial-desc">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                        </div>
-                    </div>   
-                </div>
-                
-                <div class="col-sm-6">
-                    <div id="tb-testimonial" class="testimonial testimonial-default">
-                        <div class="testimonial-section">
-                            Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                        </div>
-                        <div class="testimonial-desc">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                        </div>
-                    </div>   
-                </div>
-                
-                <div class="col-sm-6">
-                    <div id="tb-testimonial" class="testimonial testimonial-default">
-                        <div class="testimonial-section">
-                            Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                        </div>
-                        <div class="testimonial-desc">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                        </div>
-                    </div>   
-                </div>
-                
-                <div class="col-sm-6">
-                    <div id="tb-testimonial" class="testimonial testimonial-default">
-                        <div class="testimonial-section">
-                            Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                        </div>
-                        <div class="testimonial-desc">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                        </div>
-                    </div>   
-                </div>
-                
-                <div class="col-sm-6">
-                    <div id="tb-testimonial" class="testimonial testimonial-default">
-                        <div class="testimonial-section">
-                            Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
-                        </div>
-                        <div class="testimonial-desc">
-                            <div class="testimonial-writer-name">Zahed Kamal</div>
-                        </div>
-                    </div>   
-                </div>
+                @if(ViewData["Depoimentos"] != null)
+                {
+                    @foreach (DepoimentoModel depoimento in ViewData["Depoimentos"] as List<DepoimentoModel>)
+                    {
+                        @*@if(depoimento.Status == "Aprovado"){*@
+                            <div class="col-sm-6">
+                                <div id="tb-testimonial" class="testimonial testimonial-default">
+                                    <div class="testimonial-section">
+                                        @depoimento.Depoimento
+                                    </div>
+                                    <div class="testimonial-desc">
+                                        <div class="testimonial-writer-name">@depoimento.Usuario.Nome</div>
+                                    </div>
+                                </div>   
+                            </div>
+                        @*}*@
+                    }
+                } 
+                else 
+                {
+                    <div class="alert alert-danger">
+                        Não existem depoimentos cadastrados
+                    </div>    
+                }
             </div>
             <br/>
-            <h4 class="text-center">Para escrever um depoimento é preciso estar logado, <a href="/Usuario/login.html">clique aqui</a></h4>
+            <h4 class="text-center">Para escrever um depoimento é preciso estar logado, <a href="/Usuario/Login">clique aqui</a></h4>
         </div>

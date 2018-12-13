@@ -1,0 +1,133 @@
+@{
+    Layout = "MasterPagePadrao";
+    ViewBag.Title = "Contato";
+}
+
+@section styles {
+ 
+  <link href="/css/contato.css" rel="stylesheet" />
+
+}
+
+@Html.Partial("BannerSlider")
+
+<!-- Page Content -->
+    <div class="jumbotron jumbotron-sm">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-lg-12">
+            <h1 class="h1">
+              Contato
+              <small>Envie uma mensagem que logo entraremos em contato</small>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="well well-sm">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="nome"> Nome</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nome"
+                      placeholder="Informe seu nome"
+                      required="required"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email"> Email</label>
+                    <div class="input-group">
+                      <span class="input-group-addon"
+                        ><span class="glyphicon glyphicon-envelope"></span>
+                      </span>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="Informe seu  email"
+                        required="required"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="subject"> Assunto</label>
+                    <select
+                      id="assunto"
+                      name="assunto"
+                      class="form-control"
+                      required="required"
+                    >
+                      <option value="na" selected="">Selecione:</option>
+                      <option value="suporteTecnico">Suporte Técnico</option>
+                      <option value="comercial">Comercial</option>
+                      <option value="cancelamento">Cancelamento</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name"> Mensagem</label>
+                    <textarea
+                      name="message"
+                      id="mensagem"
+                      class="form-control"
+                      rows="9"
+                      cols="25"
+                      required="required"
+                      placeholder="Mensagem"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button
+                    type="submit"
+                    class="btn btn-primary pull-right"
+                    id="btnContato"
+                  >
+                    Enviar Mensagem
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <form>
+            <legend>
+              <span class="glyphicon glyphicon-globe"></span> Endereço
+            </legend>
+            <address>
+              <strong>Senai Informática</strong><br />
+              Alameda Barão de Limeira, 539<br />
+              Santa Cecilia, São Paulo - SP, 01202-001<br />
+              <abbr title="Phone"> Tel:</abbr> (11) 95842-5865
+            </address>
+            <address>
+              <strong>Nome</strong><br />
+              <a href="mailto:#">seuemail@seuemail.com</a>
+            </address>
+          </form>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <!-- /.container -->
+
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.887407706285!2d-46.6484912850227!3d-23.536551684695276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5843deb99025%3A0xb23619858bc7e63e!2sEscola+SENAI+de+Inform%C3%A1tica!5e0!3m2!1spt-BR!2sbr!4v1544551113720"
+      width="100%"
+      height="450"
+      frameborder="0"
+      style="border:0"
+      allowfullscreen
+    ></iframe>
+
+    
