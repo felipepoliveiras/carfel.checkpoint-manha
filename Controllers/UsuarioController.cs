@@ -58,13 +58,31 @@ namespace Senai.Carfel.Checkpoint.Controllers
             if (usuarioBuscado != null)
             {
                 HttpContext.Session.SetString("idUsuario", usuarioBuscado.ID.ToString());
-                return RedirectToAction("Pages", "Index");
+                HttpContext.Session.SetString("emailUsuario", usuarioBuscado.Email);
+                HttpContext.Session.SetString("nomeUsuario", usuarioBuscado.Nome);
+
+                if(usuarioBuscado.Administrador){
+                    HttpContext.Session.SetString("tipoUsuario", "Administrador");
+                    return RedirectToAction("Dashboard", "Administrador");
+                } else {
+                    HttpContext.Session.SetString("tipoUsuario", "Usuario");
+                    return RedirectToAction("Index", "Depoimento");
+                }
             }
             else
             {
                 //Reabre a tela de login
+                ViewBag.Mensagem = "<div class='alert alert-danger' role='alert'>Usuário inválido</div>";
+                
                 return View();
             }
+        }
+
+        [HttpGet]
+        public IActionResult Sair(){
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Pages");
         }
 
     }

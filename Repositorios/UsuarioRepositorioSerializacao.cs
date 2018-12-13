@@ -67,7 +67,7 @@ namespace Senai.Carfel.Checkpoint.Repositorios
 
         public List<UsuarioModel> Listar()
         {
-            throw new System.NotImplementedException();
+            return UsuariosSalvos;
         }
 
         public UsuarioModel Login(string email, string senha)

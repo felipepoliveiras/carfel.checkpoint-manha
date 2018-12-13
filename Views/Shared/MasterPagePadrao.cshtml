@@ -1,0 +1,158 @@
+@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewBag.Title - Carfel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/depoimentos.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <h4><a href="/Pages/Index.html">Carfel</a></h4>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/Pages/Index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Pages/Sobre.html">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Pages/Contato.html">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Pages/Depoimentos.html">Depoimentos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Pages/Faq.html">Faq</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          @if(Context.Session.GetString("idUsuario") == null)
+          {
+            <a href="/Usuario/Login">Login</a>
+            <a href="/Usuario/Cadastrar">Cadastrar</a>
+          } 
+          else 
+          {
+            @Html.Raw("Seja bem vindo(a) ") @Context.Session.GetString("nomeUsuario") 
+            <a href="/Usuario/Sair"> Sair </a>
+          }
+        </span>
+      </div>
+    </nav>
+
+    @RenderBody()
+
+    <footer
+        class="section footer-classic context-dark bg-image"
+        style="background: #2d3246;"
+      >
+        <div class="container">
+          <div class="row row-30">
+            <div class="col-md-4 col-xl-5">
+              <div class="pr-xl-4">
+                  <a class="brand" href="/Pages/Index.html">CARFEL</a>
+
+                <p>
+                  A população ela precisa da Zona Franca de Manaus, porque na Zona
+                  franca de Manaus, não é uma zona de exportação, é uma zona para
+                  o Brasil. 
+                </p>
+                <!-- Rights -->
+                <p class="rights">
+                  <span>© </span><span class="copyright-year">2018</span>
+                  <span> </span>
+                  <span>Desenvolvido por ...</span><span>. </span>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h5>Contato</h5>
+              <dl class="contact-list">
+                <dt>Endereço:</dt>
+                <dd>..., ...,..</dd>
+              </dl>
+              <dl class="contact-list">
+                <dt>email:</dt>
+                <dd><a href="mailto:#">seuemail@seuemail.com</a></dd>
+              </dl>
+              <dl class="contact-list">
+                <dt>Telefone:</dt>
+                <dd>
+                  <a href="tel:#">+11 7568543012</a> <span>ou</span>
+                  <a href="tel:#">+11 9571195353</a>
+                </dd>
+              </dl>
+            </div>
+            <div class="col-md-4 col-xl-3">
+              <h5>Links</h5>
+              <ul class="nav-list">
+                <li><a href="/Pages/Index.html">Home</a></li>
+                <li><a href="/Pages/Sobre.html">Sobre</a></li>
+                <li><a href="/Pages/Contato.html">Contato</a></li>
+                <li><a href="/Usuario/Login.html">Login</a></li>
+                <li><a href="/Usuario/Cadastrar.html">Cadastrar</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters social-container">
+          <div class="col">
+            <a class="social-inner" href="#"><span class="icon mdi mdi-facebook"></span><span>Facebook</span></a
+            >
+          </div>
+          <div class="col">
+            <a class="social-inner" href="#"><span class="icon mdi mdi-instagram"></span><span>instagram</span></a
+            >
+          </div>
+          <div class="col">
+            <a class="social-inner" href="#"><span class="icon mdi mdi-twitter"></span><span>twitter</span></a>
+          </div>
+          <div class="col">
+            <a class="social-inner" href="#"><span class="icon mdi mdi-youtube-play"></span><span>google</span></a>
+          </div>
+        </div>
+      </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
