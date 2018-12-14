@@ -1,0 +1,172 @@
+@using Senai.Carfel.Checkpoint.ViewModels;
+@using Senai.Carfel.Checkpoint.Models;
+
+@{
+    Layout = "MasterPageAdministrador";
+    ViewBag.Title = "Dashboard - Administrador";
+}
+
+@section styles{
+    <link rel="stylesheet" href="/css/dashboard.css" />
+}
+
+<br />
+    <div class="container bootstrap snippet">
+        <h3>Informações da operação</h3>
+      <div class="row">
+        <div class="col-lg-3 col-sm-3">
+          <div class="circle-tile ">
+            <a href="#"
+              ><div class="circle-tile-heading dark-blue">
+                <i class="fa fa-users fa-fw fa-3x"></i></div
+            ></a>
+            <div class="circle-tile-content dark-blue">
+              <div class="circle-tile-description text-faded">
+                Usuários cadastrados
+              </div>
+              <div class="circle-tile-number text-faded ">@Model.QuantUsuario</div>
+              <a class="circle-tile-footer" href="/Administrador/Usuarios"
+                >Saiba mais<i class="fa fa-chevron-circle-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-3">
+          <div class="circle-tile ">
+            <a href="#"
+              ><div class="circle-tile-heading red">
+                <i class="fa fa-users fa-fw fa-3x"></i></div
+            ></a>
+            <div class="circle-tile-content red">
+              <div class="circle-tile-description text-faded">Depoimentos</div>
+              <div class="circle-tile-number text-faded ">@Model.QuantDepoimento</div>
+              <a class="circle-tile-footer" href="/Administrador/Depoimentos"
+                >Saiba mais<i class="fa fa-chevron-circle-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-3">
+          <div class="circle-tile ">
+            <a href="#"
+              ><div class="circle-tile-heading green">
+                <i class="fa fa-users fa-fw fa-3x"></i></div
+            ></a>
+            <div class="circle-tile-content green">
+              <div class="circle-tile-description text-faded">
+                Depoimentos Aprovados
+              </div>
+              <div class="circle-tile-number text-faded ">@Model.QuantDepoimentoAprovado</div>
+              <a class="circle-tile-footer" href="/Administrador/Depoimentos"
+                >Saiba mais<i class="fa fa-chevron-circle-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-3">
+          <div class="circle-tile ">
+            <a href="#"
+              ><div class="circle-tile-heading blue">
+                <i class="fa fa-users fa-fw fa-3x"></i></div
+            ></a>
+            <div class="circle-tile-content blue">
+              <div class="circle-tile-description text-faded">
+                Depoimentos Reprovados
+              </div>
+              <div class="circle-tile-number text-faded ">@Model.QuantDepoimentoReprovado</div>
+              <a class="circle-tile-footer" href="/Administrador/Depoimentos"
+                >Saiba mais<i class="fa fa-chevron-circle-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <br>
+      <br>
+      <div class="row">
+        <h3>5 últimos usuários cadastrados</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (UsuarioModel usuario in Model.ListaUsuarios)
+            {
+                <tr>
+                    <td>@usuario.Nome</td>
+                    <td>@usuario.Email</td>
+                    <td>@(usuario.Administrador ? Html.Raw("Administrador") : Html.Raw("Usuário"))</td>
+                </tr>
+            }
+          </tbody>
+        </table>
+        <a href="/Administrador/Usuarios">Veja todos</a>
+      </div>
+      <hr />
+      <br>
+      <br>
+      <div class="row">
+        <h3>5 últimos depoimentos cadastrados</h3>
+        <table class="table">
+          <thead>
+            <tr>
+
+              <th scope="col">Depoimento</th>
+              <th scope="col">Nome usuário</th>
+              <th scope="col">Status</th>
+              <th scope="col">Data</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (DepoimentoModel depoimento in Model.ListaDepoimentos)
+            {
+                <tr>
+                <td>@depoimento.Depoimento</td>
+                <td>@depoimento.Usuario.Nome</td>
+                <td>@depoimento.Status</td>
+                <td>@depoimento.DataCadastro</td>
+                <td>
+                    @if(depoimento.Status == "Em Espera")
+                    {
+                        <a 
+                        href="/Administrador/AlterarDepoimento?id=@depoimento.ID&status=Aprovado"
+                        class="btn btn-success"
+                        >Aprovar</a
+                        >
+                        <a
+                        href="/Administrador/AlterarDepoimento?id=@depoimento.ID&status=Reprovado"
+                        class="btn btn-danger"
+                        >Rejeitar</a
+                        >
+                    }
+                    else if(depoimento.Status == "Aprovado"){
+                        <a
+                        href="/Administrador/AlterarDepoimento?id=@depoimento.ID&status=Reprovado"
+                        class="btn btn-danger"
+                        >Rejeitar</a
+                        >
+                    } else {
+                        <a 
+                        href="/Administrador/AlterarDepoimento?id=@depoimento.ID&status=Aprovado"
+                        class="btn btn-success"
+                        >Aprovar</a
+                        >
+                    }
+
+                </td>
+                </tr>
+            }
+          </tbody>
+        </table>
+        <a href="/Administrador/Depoimentos">Veja todos</a>
+      </div>
+    </div>

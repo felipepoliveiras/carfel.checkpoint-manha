@@ -1,0 +1,67 @@
+@using Senai.Carfel.Checkpoint.Models;
+
+@{
+    Layout = "MasterPageAdministrador";
+    ViewBag.Title = "Depoimentos - Administrador";
+}
+
+<br />
+    <br />
+    <div class="container bootstrap snippet">
+      <div class="row">
+        <h3>Depoimentos cadastrados</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Depoimento</th>
+              <th scope="col">Nome usuário</th>
+              <th scope="col">Status</th>
+              <th scope="col">Data</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (DepoimentoModel depoimento in ViewData["Depoimentos"] as List<DepoimentoModel>)
+            {
+                <tr>
+                <td>@depoimento.Depoimento</td>
+                <td>@depoimento.Usuario.Nome</td>
+                <td>@depoimento.Status</td>
+                <td>@depoimento.DataCadastro</td>
+                <td>
+                    @if(depoimento.Status == "Em Espera")
+                    {
+                        <a 
+                        href="/Administrador/AlterarDepoimento?id=@depoimento.ID&status=Aprovado"
+                        class="btn btn-success"
+                        >Aprovar</a
+                        >
+                        <a
+                        href="/Administrador/AlterarDepoimento?id=@depoimento.ID&status=Reprovado"
+                        class="btn btn-danger"
+                        >Rejeitar</a
+                        >
+                    }
+                    else if(depoimento.Status == "Aprovado"){
+                        <a
+                        href="/Administrador/AlterarDepoimento?id=@depoimento.ID&status=Reprovado"
+                        class="btn btn-danger"
+                        >Rejeitar</a
+                        >
+                    } else {
+                        <a 
+                        href="/Administrador/AlterarDepoimento?id=@depoimento.ID&status=Aprovado"
+                        class="btn btn-success"
+                        >Aprovar</a
+                        >
+                    }
+
+                </td>
+                </tr>
+            }
+            
+            
+          </tbody>
+        </table>
+      </div>
+    </div>

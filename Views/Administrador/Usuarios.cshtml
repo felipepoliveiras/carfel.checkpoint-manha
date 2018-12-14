@@ -1,0 +1,37 @@
+@using Senai.Carfel.Checkpoint.Models;
+
+@{
+    Layout = "MasterPageAdministrador";
+    ViewBag.Title = "Usuários - Administrador";
+}
+
+<br />
+    <div class="container bootstrap snippet">
+      <br />
+      <br />
+      <div class="row">
+        <h3>Usuários cadastrados</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (UsuarioModel usuario in ViewData["Usuarios"] as List<UsuarioModel>)
+            {
+                <tr>
+                    <td>@usuario.Nome</td>
+                    <td>@usuario.Email</td>
+                    <td>@(usuario.Administrador ? Html.Raw("Administrador") : Html.Raw("Usuário"))</td>
+                </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <hr />
+      <br />
+      <br />
+    </div>

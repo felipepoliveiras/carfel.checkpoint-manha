@@ -24,7 +24,7 @@ namespace Senai.Carfel.Checkpoint.Controllers
         public IActionResult Index(){
             //Atribui os depoimentos ao ViewData para serem obtidos na página cshtml
             //Filtra com linq somente para depoimentos aprovados
-            ViewData["Depoimentos"] = depoimentoRepositorio.Listar().Where(d => d.Status == "Aprovado").ToList();
+            ViewData["Depoimentos"] = depoimentoRepositorio.Listar().Where(d => d.Status == "Aprovado").OrderByDescending(d => d.DataCadastro).ToList();
             
             return View();
         }

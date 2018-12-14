@@ -32,22 +32,7 @@ namespace Senai.Carfel.Checkpoint
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //Criando o adm padrao caso nao exista
-            if (!File.Exists("usuario.dat"))
-            {
-                UsuarioModel adm = new UsuarioModel(
-                    nome: "Administrador do Sistema" ,
-                    email: "adm@carfel.com",
-                    senha: "admin"
-                );
-                adm.Administrador = true;
-                adm.DataCadastro = DateTime.Now;
-
-                IUsuarioRepositorio usuarioRepositorio;
-                usuarioRepositorio = new UsuarioRepositorioSerializacao();
-
-                usuarioRepositorio.Cadastrar(adm);
-            }
+            
 
 
             if (env.IsDevelopment())
